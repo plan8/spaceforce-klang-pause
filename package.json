@@ -1,6 +1,6 @@
 {
   "name": "@plan8/spaceforce-klang",
-  "version": "3.3.1",
+  "version": "3.3.3",
   "description": "Klang Audio Engine from Plan8",
   "main": "dist/klang.umd.js",
   "types": "dist/index.d.ts",
@@ -33,9 +33,5 @@
         "modules": false
       }
     ]
-  },
-  "dependencies": {
-    "@plan8/klang": "link:../../Library/pnpm/global/5/node_modules/@plan8/klang",
-    "list": "link:../../Library/pnpm/global/5/node_modules/list"
   }
 }
