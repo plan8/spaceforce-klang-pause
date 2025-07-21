@@ -33,5 +33,8 @@
         "modules": false
       }
     ]
+  },
+  "dependencies": {
+    "@plan8/klang": "link:../../Library/pnpm/global/5/node_modules/@plan8/klang"
   }
 }

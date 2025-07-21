@@ -419,23 +419,14 @@ class SpaceForceKlang extends InteractiveLayerBase {
   }
 
   public pauseLaunchSequence() {
-    //voParts['launchSequence'].pause();
+    console.log('chango')
     sceneManager.pause("main:rocketLaunch", { fadeTime: 0.5 });
-
-    
-    //sceneManager.pauseForScene('main')
     voParts['launchSequence'].pauseCurrent()
   }
 
   public resumeLaunchSequence() {
-
     sceneManager.resume("main:rocketLaunch", { fadeTime: 0.5 });
-
     voParts['launchSequence'].resumeCurrent()
-
-    
-
-    // sceneManager.resumeForScene('main');
   }
 
   private stopText(voice: IVoice | undefined) {

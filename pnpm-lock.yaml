@@ -15,9 +15,6 @@ importers:
       '@plan8/klang':
         specifier: link:../../Library/pnpm/global/5/node_modules/@plan8/klang
         version: link:../../Library/pnpm/global/5/node_modules/@plan8/klang
-      list:
-        specifier: link:../../Library/pnpm/global/5/node_modules/list
-        version: link:../../Library/pnpm/global/5/node_modules/list
     devDependencies:
       '@babel/preset-env':
         specifier: ^7.19.1
