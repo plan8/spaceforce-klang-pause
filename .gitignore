@@ -1,0 +1,8 @@
+
+node_modules/
+
+*.vim
+
+rawAssets/*.wav
+
+.DS_Store

@@ -1,0 +1,6 @@
+onlyBuiltDependencies:
+  - esbuild
+
+overrides:
+  '@plan8/klang': link:../../Library/pnpm/global/5/node_modules/@plan8/klang
+  list: link:../../Library/pnpm/global/5/node_modules/list

@@ -1,0 +1,41 @@
+{
+  "name": "@plan8/spaceforce-klang",
+  "version": "3.3.1",
+  "description": "Klang Audio Engine from Plan8",
+  "main": "dist/klang.umd.js",
+  "types": "dist/index.d.ts",
+  "author": "plan8",
+  "license": "none",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "rm -rf dist && tsc && vite build --mode production && yarn generateTypes",
+    "convertAssets": "./node_modules/@plan8/klang/scripts/compressFiles.sh ./rawAssets/ ../ussf-website/packages/app/public/audio/",
+    "generateTypes": "tsc -p ./tsconfig.types.json",
+    "lint": "npx prettier --write \"src/**/*.ts\"",
+    "serve:test": "vite",
+    "bootstrap:private": "node node_modules/@plan8/bootstrap-private-repos/src/index.js"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.19.1",
+    "@plan8/bootstrap-private-repos": "https://github.com/plan8/bootstrap-private-repos.git",
+    "prettier": "^2.7.1",
+    "typescript": "^4.5.4",
+    "vite": "^2.9.9"
+  },
+  "privateDependencies": {
+    "@plan8/klang": "develop"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      {
+        "modules": false
+      }
+    ]
+  },
+  "dependencies": {
+    "@plan8/klang": "link:../../Library/pnpm/global/5/node_modules/@plan8/klang",
+    "list": "link:../../Library/pnpm/global/5/node_modules/list"
+  }
+}
