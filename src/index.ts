@@ -73,6 +73,7 @@ voConfig.parts.forEach((config) => {
 });
 
 const stopAllVO = () => {
+  console.log('stopAllVO')
   Object.values(voParts).forEach((voPart: VOPart) => {
     voPart.stop();
   });
@@ -315,9 +316,9 @@ class SpaceForceKlang extends InteractiveLayerBase {
     super({
       initializingElement: window,
       onInit: () => {
-        
+        console.log('onInit')
         this.disableBlurMute(false);
-       // utils.setMuteOnBlur("$OUT", 0.3, sceneManager);
+      
         
         const promises = [sceneManager.loadScene("generic")];
 

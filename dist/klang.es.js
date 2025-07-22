@@ -24266,6 +24266,7 @@ class SpaceForceKlang extends InteractiveLayerBase {
     super({
       initializingElement: window,
       onInit: () => {
+        console.log("onInit");
         this.disableBlurMute(false);
         const promises = [sceneManager.loadScene("generic")];
         return Promise.all(promises).then(() => {
