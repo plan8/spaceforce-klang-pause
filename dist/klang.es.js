@@ -54,6 +54,7 @@ var __async = (__this, __arguments, generator) => {
     step((generator = generator.apply(__this, __arguments)).next());
   });
 };
+typeof window !== "undefined" && (window.TONE_SILENCE_LOGGING = true);
 const version = "dev";
 const createExtendedExponentialRampToValueAutomationEvent = (value, endTime, insertTime) => {
   return { endTime, insertTime, type: "exponentialRampToValue", value };
@@ -14091,6 +14092,9 @@ class InteractiveLayerBase {
     autoEnableAudio = true
   }) {
     this.autoEnableAudio = true;
+    if (typeof window !== "undefined") {
+      window.TONE_SILENCE_LOGGING = true;
+    }
     this.initializingElement = initializingElement || window;
     this.init = this.init.bind(this);
     this.onInit = onInit;
@@ -22210,6 +22214,22 @@ class SceneManager {
   static now() {
     return now();
   }
+  pauseAllCurrentlyPlaying(options) {
+    var _a;
+    for (const instrument of this.getInstruments().values()) {
+      if (((_a = instrument.settings) == null ? void 0 : _a.type) === "player" && instrument.getState && instrument.getState() === "started") {
+        instrument.pause(options);
+      }
+    }
+  }
+  resumeAllPlaying(options) {
+    var _a;
+    for (const instrument of this.getInstruments().values()) {
+      if (((_a = instrument.settings) == null ? void 0 : _a.type) === "player" && instrument.getState && instrument.getState() === "paused") {
+        instrument.resume(options);
+      }
+    }
+  }
 }
 const createFSM = (stateMachineDefinition) => {
   const machine = {
@@ -23975,23 +23995,17 @@ class VOPart {
   pauseCurrent() {
     var _a;
     const event = this.config.events[this.currentIndex - 1];
-    console.log("pauseCurrent!", event);
-    if (event && event.key) {
-      this.sceneManager.pause(`vo:${event.key}`, { fadeTime: 0.1 });
-    }
+    if (event && event.key)
+      ;
     if (this.timeoutId) {
       this.timerPausedAt = Date.now();
       this.timerRemaining = ((_a = this.timeoutTargetTime) != null ? _a : 0) - this.timerPausedAt;
       clearTimeout(this.timeoutId);
       this.timeoutId = 0;
     }
-    console.log("paused", event.key);
   }
   resumeCurrent() {
-    const event = this.config.events[this.currentIndex - 1];
-    if (event) {
-      this.sceneManager.resume(`vo:${event.key}`, { fadeTime: 0.1 });
-    }
+    this.config.events[this.currentIndex - 1];
     if (this.timerRemaining && this.timerRemaining > 0) {
       this.timeoutId = setTimeout(() => {
         this.triggerKey(this.currentIndex, 0);
@@ -23999,7 +24013,6 @@ class VOPart {
       this.timeoutTargetTime = Date.now() + this.timerRemaining;
       this.timerRemaining = null;
     }
-    console.log("resumed", event.key);
   }
   triggerKey(index, delay = 0) {
     if (index < this.config.events.length) {
@@ -24328,13 +24341,12 @@ class SpaceForceKlang extends InteractiveLayerBase {
       }
     }
   }
-  pauseLaunchSequence() {
-    console.log("chango");
-    sceneManager.pause("main:rocketLaunch", { fadeTime: 0.5 });
+  pauseAllCurrentlyPlaying() {
+    sceneManager.pauseAllCurrentlyPlaying({ fadeTime: 0.5 });
     voParts["launchSequence"].pauseCurrent();
   }
-  resumeLaunchSequence() {
-    sceneManager.resume("main:rocketLaunch", { fadeTime: 0.5 });
+  resumeAllCurrentlyPlaying() {
+    sceneManager.resumeAllPlaying({ fadeTime: 0.5 });
     voParts["launchSequence"].resumeCurrent();
   }
   stopText(voice) {

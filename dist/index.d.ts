@@ -23,8 +23,8 @@ declare class SpaceForceKlang extends InteractiveLayerBase {
     changeScene(sceneName: string | number): any;
     setIsMapOpen(isOpen: boolean): void;
     textScramble(text: string, delay?: number): void;
-    pauseLaunchSequence(): void;
-    resumeLaunchSequence(): void;
+    pauseAllCurrentlyPlaying(): void;
+    resumeAllCurrentlyPlaying(): void;
     private stopText;
     stopTextScramble(text?: string): void;
     handleVoice(guardian: IGuardian, index: number): void;

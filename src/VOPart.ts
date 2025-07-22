@@ -68,9 +68,9 @@ class VOPart  {
   public pauseCurrent() {
     const event = this.config.events[this.currentIndex - 1];
 
-    console.log('pauseCurrent!', event);
+   
     if (event && event.key) {
-      this.sceneManager.pause(`vo:${event.key}`, { fadeTime: 0.1 });
+     // this.sceneManager.pause(`vo:${event.key}`, { fadeTime: 0.1 });
     }
     // Pause the timer
     if (this.timeoutId) {
@@ -82,7 +82,7 @@ class VOPart  {
     }
 
    
-    console.log('paused', event.key);
+  
 
     
   }
@@ -90,7 +90,7 @@ class VOPart  {
   public resumeCurrent() {
     const event = this.config.events[this.currentIndex - 1];
     if (event) {
-      this.sceneManager.resume(`vo:${event.key}`, { fadeTime: 0.1 });  
+     // this.sceneManager.resume(`vo:${event.key}`, { fadeTime: 0.1 });  
     }
     // Resume the timer
     if (this.timerRemaining && this.timerRemaining > 0) {
@@ -100,7 +100,7 @@ class VOPart  {
       this.timeoutTargetTime = Date.now() + this.timerRemaining;
       this.timerRemaining = null;
     }
-    console.log('resumed', event.key);
+   
   }
 
   private triggerKey(index: number, delay: number = 0) {
